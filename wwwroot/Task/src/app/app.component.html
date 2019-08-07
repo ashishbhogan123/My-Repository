@@ -1,0 +1,88 @@
+
+
+<html>
+   <head>Product</head>
+   <body>
+      <table>
+         <tr>
+            <th>First Name:</th>
+            <th>Last Name:</th>
+            <th>Purchase Date:</th>
+         </tr>
+         <tr>
+            <td><input [(ngModel)]="customer.Firstname" type="text" name="name">
+            <td><input [(ngModel)]="customer.Lastname" type="text" name="name">
+            <td><input [(ngModel)]="customer.Purchasedate" type="text" name="name">
+         </tr>
+      </table>
+      <br><br>
+      <table>
+         <tr>
+            <th>Product:</th>
+            <th>Quantity:</th>
+            <th>Price:</th>
+            <th>TotalPrice:</th>
+         </tr>
+         <tr>
+            <td>
+               <select [(ngModel)]= "orderobj.Product">
+               <option value="Pen">Pen</option>
+               <option value="Mob">Mob</option>
+               <option value="Shoes">Shoes</option>
+               <option value="Bag">Bag</option>
+               </select>
+            </td>
+            <td><input [(ngModel)]= "orderobj.Quantity"type="text" name="name"></td>
+            <td><input [(ngModel)]= "orderobj.Price"type="text" name="name"></td>
+            <td><div>{{orderobj.TotalPrice}}</div></td>
+            <td><input type="button" name="name" value="Add" (click)="AddOrders()"></td>
+         </tr>
+      </table>
+      <table>
+            <tr>
+                  <td>Product</td>
+                  <td>Qty</td>
+                  <td>Price</td>
+                  <td>Total price</td>
+               </tr>
+         <tr *ngFor="let P of customer.orders">
+            <td>{{P.Product}}</td>
+            <td>{{P.Quantity}}</td>
+            <td>{{P.Price}}</td>
+            <td>{{P.TotalPrice}}</td>
+         
+         </tr>
+      </table>
+
+      <input type="button" name="name" value="Add Customer" (click)="AddCustomer()">
+      <table>
+         <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Purchase data</td>
+            <td>Order</td>
+         </tr>
+         <tr  *ngFor="let cust of customers;let idx=index">
+            <td valign="top">{{cust.Firstname}}</td>
+            <td valign="top">{{cust.Lastname}}</td>
+            <td valign="top">{{cust.Purchasedate}}</td>
+            <td><a (click)="SelectCustomer(idx)" href="#">Edit</a></td>
+            <td>
+               <table>
+                  <tr *ngFor="let P of cust.orders">
+                     <td>{{P.Product}}</td>
+                     <td>{{P.Quantity}}</td>
+                     <td>{{P.Price}}</td>
+                     <td>{{P.TotalPrice}}</td>
+                     
+                  </tr>
+               </table>
+
+            </td>
+         </tr>
+      </table>
+      <input type="button" name="name" value="Submit" (click)="Submit()">
+     
+   </body>
+</html>
+
